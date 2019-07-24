@@ -10,6 +10,13 @@ As the program starts, the user is asked to choosed between to main methods:
 The first uses the default window size, as explained in the original paper (Dalal, Triggs[1]), while the daimler mode uses a SVM trained on humand, over a (48,96) window.
 The mode is selected by simply pressing "0" (default) or "1" (daimler).
 
+# If you only want to run the program
+
+# if you want to edit the program
+Depending on the IDE you are using, different setup procedures may be required.
+The first thing you need is a compiled version of OpenCV (I am using 3.4.3). 
+Header libraries are found in /usr/local/include.
+Library files are found in /usr/local/lib.
 
 # How to
 The .xcodeproj is only needed to open the project with xcode as default IDE, but you are free to use whatever, since the execution is done via terminal (keep on reading).
