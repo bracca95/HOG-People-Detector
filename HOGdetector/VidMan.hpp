@@ -2,9 +2,6 @@
 //  VidMan.hpp
 //  HOGdetector
 //
-//  Created by Lorenzo Braccaioli on 24/07/2019.
-//  Copyright © 2019 bracca. All rights reserved.
-//
 
 #ifndef VidMan_hpp
 #define VidMan_hpp
@@ -22,21 +19,17 @@ using namespace cv;
 class VidMan {
     
 private:
-    static int frameCount, totNumFrames;
-    Mat frame;
     VideoCapture baseVideo;
     string videoPath;
+    int frameCounter;
     
 public:
-    VidMan ();
-    VidMan (string videoPath);
+    // constructors
+    VidMan(VideoCapture _baseVideo, string _videoPath);
     
-    void displayVideo ();
-    
-    // frame counter
-    int setFrameCount ();
-    int getFrameCount ();
-    int totFrames ();
+    // methods
+    void playVideo();
+    int getTotFrames();
     
 };
 

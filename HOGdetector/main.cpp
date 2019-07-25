@@ -11,14 +11,11 @@
 
 int main(int argc, const char * argv[]) {
     
+    VideoCapture cap;
     string prova = "/Users/bracca/Documents/Progetti/ComputerVision_Project/CPP_DATASET/Datasets/ETH/BAHNHOF/ETH-Bahnhof.mp4";
-    VidMan vidan = VidMan(prova);
     
-    try {
-        vidan.displayVideo();
-    } catch (const char* err_msg) {
-        cerr << "unable to retrieve or to show video. Quitting program" << endl;
-    }
+    VidMan vidan = VidMan(cap, prova);
+    vidan.playVideo();
     
     return 0;
 }

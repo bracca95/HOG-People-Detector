@@ -2,30 +2,21 @@
 //  VidMan.cpp
 //  HOGdetector
 //
-//  Created by Lorenzo Braccaioli on 24/07/2019.
-//  Copyright © 2019 bracca. All rights reserved.
-//
 
 #include "VidMan.hpp"
 
-VidMan::VidMan () {
-    frameCount = 0;
-    frame = NULL;
-    baseVideo = NULL;
-    videoPath = "";
-}
-
-VidMan::VidMan (string _videoPath) {
-    frameCount = 0;
-    frame = Mat();
-    baseVideo = VideoCapture();
+VidMan::VidMan(VideoCapture _baseVideo, string _videoPath) {
+    baseVideo = _baseVideo;
     videoPath = _videoPath;
+    frameCounter = 0;
 }
 
-void VidMan::displayVideo () {
-    // try to open video: throw an exception if wrong path
+void VidMan::playVideo() {
+    
+    // try to open video reference
     baseVideo.open(videoPath);
     if (!baseVideo.isOpened()) {
+        // throw an exception if there is no video
         throw "no video to display";
         return;
     }
@@ -34,35 +25,36 @@ void VidMan::displayVideo () {
     string window = "Video";
     namedWindow(window, WINDOW_AUTOSIZE);
     
+    // frame by frame show: in this case only one frame so that the previous is overwritten
     while (true) {
-        int frameCounter = setFrameCount();
+        frameCounter++;
+        
+        // put the video frames inside the Mat, which in this case is updated ad every loop (overwrite the previous iteration)
+        Mat frame;
+        baseVideo >> frame;
         
         // show results in a window
-        baseVideo >> frame;
         imshow(window, frame);
         
         // the waitKey's number specifies the time interval between two frames
         // the "waited key" input is 27 (in ASCII) which corresponds to ESC
         char c = (char)waitKey(1);
-        if((c==27) || (frameCounter == totNumFrames - 1)) break;
+        if((c==27) || (frameCounter == getTotFrames() - 1)) break;
     }
+    
     
     // When everything done, destroy things
     baseVideo.release();
     destroyAllWindows();
     
     return;
+
 }
 
-int VidMan::setFrameCount() {
-    int frameC = getFrameCount();
-    return frameCount = frameC + 1;
-}
+// print FPS info
 
-int VidMan::getFrameCount() {
-    return frameCount;
-}
 
-int VidMan::totFrames () {
-    return totNumFrames = baseVideo.get(CAP_PROP_FRAME_COUNT);
+// get total number of frames per video
+int VidMan::getTotFrames() {
+    return baseVideo.get(CAP_PROP_FRAME_COUNT);
 }
