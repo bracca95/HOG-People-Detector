@@ -23,6 +23,9 @@ private:
 public:
     ReadWrite();
     vector<Rect> getTruth(Mat _frame, int _frameCounter, string _inputTruth);
+    void writeOnFile(ofstream* _outfile, int _frameCounter, double _precision, double _recall);
+    void openFile(ofstream* _outfile, string _inputTruth);
+    void closeFile(ofstream* _outfile);
 };
 
 #endif /* ReadWrite_hpp */

@@ -29,9 +29,6 @@ public:
     // methods
     void getAccuracy(vector<Rect> _found, vector<Rect> _truth, ofstream* _outfile, int _frameCounter);
     int overlap(Rect _rect1, Rect _rect2);
-    void writeOnFile(ofstream* _outfile, int _frameCounter, double _precision, double _recall);
-    void openFile(ofstream* _outfile, string _inputTruth);
-    void closeFile(ofstream* _outfile);
 };
 
 #endif /* Accuracy_hpp */

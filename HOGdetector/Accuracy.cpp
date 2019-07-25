@@ -44,7 +44,7 @@ void Accuracy::getAccuracy(vector<Rect> _found, vector<Rect> _truth, ofstream* _
     
     // DEBUG
     //cout << "guess: " << truePositive << ". size: " << _found.size() << endl;
-    writeOnFile(_outfile, _frameCounter, precision, recall);
+    writer.writeOnFile(_outfile, _frameCounter, precision, recall);
 }
 
 int Accuracy::overlap(Rect _rect1, Rect _rect2) {
@@ -57,25 +57,4 @@ int Accuracy::overlap(Rect _rect1, Rect _rect2) {
         return dx*dy;
     else
         return 0;
-}
-
-void Accuracy::writeOnFile(ofstream* _outfile, int _frameCounter, double _precision, double _recall) {
-    // there might be a limited number of errors
-    if (precision > 1) precision = 1;
-    if (recall > 1) recall = 1;
-    
-    if (_outfile->is_open()) {
-        *_outfile << _frameCounter << "\t" << precision << "\t" << recall << "\n";
-    }
-}
-
-void Accuracy::openFile(ofstream* _outfile, string _inputTruth) {
-    string fullOutFile = _inputTruth + "new_out.txt";
-    if (!_outfile->is_open()) {
-        _outfile->open(fullOutFile.c_str());
-    }
-}
-
-void Accuracy::closeFile(ofstream* _outfile) {
-    _outfile->close();
 }

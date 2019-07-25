@@ -27,7 +27,7 @@ void VidMan::playVideo() {
     
     // open file to save data
     ofstream outfile;
-    accuracy.openFile(&outfile, inputTruth);
+    readwrite.openFile(&outfile, inputTruth);
     
     // give a name to a window and open it to display the video
     string window = "Video";
@@ -64,7 +64,7 @@ void VidMan::playVideo() {
     // When everything done, destroy things
     baseVideo.release();
     destroyAllWindows();
-    accuracy.closeFile(&outfile);
+    readwrite.closeFile(&outfile);
     
     return;
 

@@ -30,3 +30,24 @@ vector<Rect> ReadWrite::getTruth(Mat _frame, int _frameCounter, string _inputTru
     infile.close();
     return correct;
 }
+
+void ReadWrite::writeOnFile(ofstream* _outfile, int _frameCounter, double _precision, double _recall) {
+    // there might be a limited number of errors
+    if (_precision > 1) _precision = 1;
+    if (_recall > 1) _recall = 1;
+    
+    if (_outfile->is_open()) {
+        *_outfile << _frameCounter << "\t" << _precision << "\t" << _recall << "\n";
+    }
+}
+
+void ReadWrite::openFile(ofstream* _outfile, string _inputTruth) {
+    string fullOutFile = _inputTruth + "new_out.txt";
+    if (!_outfile->is_open()) {
+        _outfile->open(fullOutFile.c_str());
+    }
+}
+
+void ReadWrite::closeFile(ofstream* _outfile) {
+    _outfile->close();
+}
