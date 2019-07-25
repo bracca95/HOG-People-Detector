@@ -27,7 +27,8 @@ void VidMan::playVideo() {
     
     // open file to save data
     ofstream outfile;
-    readwrite.openFile(&outfile, inputTruth);
+    if (inputTruth != "")
+        readwrite.openFile(&outfile, inputTruth);
     
     // give a name to a window and open it to display the video
     string window = "Video";
@@ -44,12 +45,15 @@ void VidMan::playVideo() {
         found = detector.detect(frame);
         plot.plotBoxes(frame, found, false);
         
-        // plot ground truth
-        truth = readwrite.getTruth(frame, frameCounter, inputTruth);
-        plot.plotBoxes(frame, truth, true);
-        
-        // accuracy
-        accuracy.getAccuracy(found, truth, &outfile, frameCounter);
+        // ground truth: plot and compute accuracy
+        if (inputTruth != "") {
+            // plot ground truth
+            truth = readwrite.getTruth(frame, frameCounter, inputTruth);
+            plot.plotBoxes(frame, truth, true);
+            
+            // accuracy
+            accuracy.getAccuracy(found, truth, &outfile, frameCounter);
+        }
         
         // show results in a window
         imshow(window, frame);
@@ -67,7 +71,6 @@ void VidMan::playVideo() {
     readwrite.closeFile(&outfile);
     
     return;
-
 }
 
 // print FPS info
