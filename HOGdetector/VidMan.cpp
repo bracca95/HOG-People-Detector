@@ -5,10 +5,11 @@
 
 #include "VidMan.hpp"
 
-VidMan::VidMan(Mat _frame, VideoCapture _baseVideo, string _videoPath) {
+VidMan::VidMan(Mat _frame, VideoCapture _baseVideo, string _videoPath, string _inputTruth) {
     frame = _frame;
     baseVideo = _baseVideo;
     videoPath = _videoPath;
+    inputTruth = _inputTruth;
     frameCounter = 0;
     
     plot = Plotter(_frame);
@@ -39,6 +40,9 @@ void VidMan::playVideo() {
         found = detector.detect(frame);
         plot.plotBoxes(frame, found);
         
+        // plot ground truth
+        truth = plot.plotTruth(frame, frameCounter, inputTruth);
+        
         // show results in a window
         imshow(window, frame);
         
@@ -62,6 +66,11 @@ void VidMan::printFPS(Mat _frame) {
     ostringstream buf;
     buf << "Frame Count: " << frameCounter;
     putText(_frame, buf.str(), Point(10, 30), FONT_HERSHEY_PLAIN, 2.0, Scalar(0, 0, 255), 2, LINE_AA);
+}
+
+// get current frame
+int VidMan::getCurFrame() {
+    return frameCounter;
 }
 
 // get total number of frames per video

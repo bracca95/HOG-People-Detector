@@ -11,6 +11,7 @@
 #include <opencv2/imgproc.hpp>
 #include <opencv2/videoio.hpp>
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 using namespace cv;
@@ -18,7 +19,9 @@ using namespace cv;
 class Plotter {
 private:
     Mat frame;
+    string inputTruth;
     vector<Rect> boundBoxes;
+    vector<Rect> groundTruth;
     
 public:
     // constructor(s)
@@ -27,6 +30,7 @@ public:
     
     // methods
     void plotBoxes(Mat _frame, vector<Rect> _boundBoxes);
+    vector<Rect> plotTruth(Mat _frame, int _frameCounter, string _inputTruth);
     void adjustRect(Rect &r) const;
 };
 

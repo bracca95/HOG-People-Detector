@@ -23,7 +23,7 @@ private:
     /* own attributes */
     Mat frame;
     VideoCapture baseVideo;
-    string videoPath;
+    string videoPath, inputTruth;
     int frameCounter;
     
     /* derived */
@@ -33,12 +33,13 @@ private:
     
 public:
     // constructors
-    VidMan(Mat _frame, VideoCapture _baseVideo, string _videoPath);
+    VidMan(Mat _frame, VideoCapture _baseVideo, string _videoPath, string _inputTruth);
     
     // methods
     void playVideo();
     void printFPS(Mat _frame);
     int getTotFrames();
+    int getCurFrame();
     
 };
 
