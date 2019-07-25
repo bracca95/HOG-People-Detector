@@ -60,7 +60,7 @@ void VidMan::playVideo() {
         
         // the waitKey's number specifies the time interval between two frames
         // the "waited key" input is 27 (in ASCII) which corresponds to ESC
-        char c = (char)waitKey(0);
+        char c = (char)waitKey(1);
         if((c==27) || (frameCounter == getTotFrames() - 1)) break;
     }
     

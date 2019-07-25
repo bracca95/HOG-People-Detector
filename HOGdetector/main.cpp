@@ -8,20 +8,34 @@
 
 int main(int argc, const char * argv[]) {
     
+    const char* keys = {
+        "{help h|     | show help message}"
+        "{vf    |     | path of video file}"
+        "{gt    |     | path of ground truth txt file}"
+    };
+    
+    CommandLineParser parser( argc, argv, keys );
+    
+    if (parser.has("help")) {
+        parser.printMessage();
+        cout << "Sample usage: " << endl
+             << "./target -vf='/path/to/video/file.mp4' "
+             << "-gt='/path/to/groundtruth.txt' " << endl << endl
+             << "-gt='' If no ground truth available" << endl;
+        exit(0);
+    }
+    
+    string video = parser.get<string> ("vf");
+    string grndt = parser.get<string> ("gt");
     Mat frame;
     VideoCapture cap;
-    string provaa = "/Users/bracca/Documents/Progetti/ComputerVision_Project/CPP_DATASET/Datasets/ETH/BAHNHOF/ETH-Bahnhof.mp4";
-    string verita = "/Users/bracca/Documents/Progetti/ComputerVision_Project/CPP_DATASET/Datasets/ETH/BAHNHOF/gt/gt_output.txt";
     
-    string prova = argv[1];
-    string verit = argv[2];
-    
-    VidMan vidan = VidMan(frame, cap, prova, verit);
+    VidMan vidman = VidMan(frame, cap, video, grndt);
     
     // open a video
     try {
         // write "niente" for GT if do not want it
-        vidan.playVideo();
+        vidman.playVideo();
     } catch (const char* err_msg) {
         cerr << "unable to retrieve or to show video. Quitting program" << endl;
     }
