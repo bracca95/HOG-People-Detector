@@ -25,6 +25,10 @@ void VidMan::playVideo() {
         return;
     }
     
+    // open file to save data
+    ofstream outfile;
+    accuracy.openFile(&outfile, inputTruth);
+    
     // give a name to a window and open it to display the video
     string window = "Video";
     namedWindow(window, WINDOW_AUTOSIZE);
@@ -44,6 +48,9 @@ void VidMan::playVideo() {
         truth = readwrite.getTruth(frame, frameCounter, inputTruth);
         plot.plotBoxes(frame, truth, true);
         
+        // accuracy
+        accuracy.getAccuracy(found, truth, &outfile, frameCounter);
+        
         // show results in a window
         imshow(window, frame);
         
@@ -57,6 +64,7 @@ void VidMan::playVideo() {
     // When everything done, destroy things
     baseVideo.release();
     destroyAllWindows();
+    accuracy.closeFile(&outfile);
     
     return;
 

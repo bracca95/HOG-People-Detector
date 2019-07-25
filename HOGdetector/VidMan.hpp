@@ -14,6 +14,7 @@
 #include "Detector.hpp"
 #include "Plotter.hpp"
 #include "ReadWrite.hpp"
+#include "Accuracy.hpp"
 
 using namespace std;
 using namespace cv;
@@ -31,6 +32,7 @@ private:
     Detector detector;
     vector<Rect> found, truth;
     Plotter plot;
+    Accuracy accuracy;
     ReadWrite readwrite;
     
 public:

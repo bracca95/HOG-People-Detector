@@ -30,7 +30,9 @@ for dirs in */ ; do
 done
 
 # compile command
-g++ -I /usr/local/include \
+# https://stackoverflow.com/questions/14005911/iso-c-forbids-declaration-of-tuple-with-no-type
+c++ -std=c++11 -stdlib=libc++ \
+ 	-I /usr/local/include \
 	-L /usr/local/lib -lopencv_core -lopencv_imgproc \
 						-lopencv_highgui -lopencv_ml \
 						-lopencv_video -lopencv_videoio \
