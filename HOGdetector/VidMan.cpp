@@ -5,7 +5,8 @@
 
 #include "VidMan.hpp"
 
-VidMan::VidMan(VideoCapture _baseVideo, string _videoPath) {
+VidMan::VidMan(Mat _frame, VideoCapture _baseVideo, string _videoPath) {
+    frame = _frame;
     baseVideo = _baseVideo;
     videoPath = _videoPath;
     frameCounter = 0;
@@ -27,10 +28,8 @@ void VidMan::playVideo() {
     
     // frame by frame show: in this case only one frame so that the previous is overwritten
     while (true) {
-        frameCounter++;
-        
         // put the video frames inside the Mat, which in this case is updated ad every loop (overwrite the previous iteration)
-        Mat frame;
+        frameCounter++;
         baseVideo >> frame;
         printFPS(frame);
         

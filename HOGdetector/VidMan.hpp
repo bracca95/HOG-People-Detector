@@ -19,14 +19,14 @@ using namespace cv;
 class VidMan {
     
 private:
+    Mat frame;
     VideoCapture baseVideo;
     string videoPath;
     int frameCounter;
     
 public:
     // constructors
-    VidMan(VideoCapture _baseVideo, string _videoPath);
-    VidMan(VideoCapture _baseVideo, string _videoPath, ostringstream _buf);
+    VidMan(Mat _frame, VideoCapture _baseVideo, string _videoPath);
     
     // methods
     void playVideo();
