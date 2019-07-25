@@ -38,17 +38,18 @@ void VidMan::playVideo() {
         
         // start and plot detection
         found = detector.detect(frame);
-        plot.plotBoxes(frame, found);
+        plot.plotBoxes(frame, found, false);
         
         // plot ground truth
-        truth = plot.plotTruth(frame, frameCounter, inputTruth);
+        truth = readwrite.getTruth(frame, frameCounter, inputTruth);
+        plot.plotBoxes(frame, truth, true);
         
         // show results in a window
         imshow(window, frame);
         
         // the waitKey's number specifies the time interval between two frames
         // the "waited key" input is 27 (in ASCII) which corresponds to ESC
-        char c = (char)waitKey(1);
+        char c = (char)waitKey(0);
         if((c==27) || (frameCounter == getTotFrames() - 1)) break;
     }
     

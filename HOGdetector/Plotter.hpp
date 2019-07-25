@@ -19,9 +19,8 @@ using namespace cv;
 class Plotter {
 private:
     Mat frame;
-    string inputTruth;
     vector<Rect> boundBoxes;
-    vector<Rect> groundTruth;
+    bool gt;                    // if true-> GT, if false -> detection
     
 public:
     // constructor(s)
@@ -29,8 +28,7 @@ public:
     Plotter(Mat _frame);
     
     // methods
-    void plotBoxes(Mat _frame, vector<Rect> _boundBoxes);
-    vector<Rect> plotTruth(Mat _frame, int _frameCounter, string _inputTruth);
+    void plotBoxes(Mat _frame, vector<Rect> _boundBoxes, bool _gt);
     void adjustRect(Rect &r) const;
 };
 
