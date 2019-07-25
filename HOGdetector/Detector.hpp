@@ -31,7 +31,6 @@ public:
     void toggleMode();
     string modeName() const;
     vector<Rect> detect(InputArray img);
-    void adjustRect(Rect &r) const;
 };
 
 #endif /* Detector_hpp */

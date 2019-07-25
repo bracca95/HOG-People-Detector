@@ -10,6 +10,8 @@ VidMan::VidMan(Mat _frame, VideoCapture _baseVideo, string _videoPath) {
     baseVideo = _baseVideo;
     videoPath = _videoPath;
     frameCounter = 0;
+    
+    plot = Plotter(_frame);
 }
 
 void VidMan::playVideo() {
@@ -32,6 +34,10 @@ void VidMan::playVideo() {
         frameCounter++;
         baseVideo >> frame;
         printFPS(frame);
+        
+        // start and plot detection
+        found = detector.detect(frame);
+        plot.plotBoxes(frame, found);
         
         // show results in a window
         imshow(window, frame);
