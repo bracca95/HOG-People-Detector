@@ -32,6 +32,7 @@ void VidMan::playVideo() {
         // put the video frames inside the Mat, which in this case is updated ad every loop (overwrite the previous iteration)
         Mat frame;
         baseVideo >> frame;
+        printFPS(frame);
         
         // show results in a window
         imshow(window, frame);
@@ -52,7 +53,11 @@ void VidMan::playVideo() {
 }
 
 // print FPS info
-
+void VidMan::printFPS(Mat _frame) {
+    ostringstream buf;
+    buf << "Frame Count: " << frameCounter;
+    putText(_frame, buf.str(), Point(10, 30), FONT_HERSHEY_PLAIN, 2.0, Scalar(0, 0, 255), 2, LINE_AA);
+}
 
 // get total number of frames per video
 int VidMan::getTotFrames() {

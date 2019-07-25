@@ -26,9 +26,11 @@ private:
 public:
     // constructors
     VidMan(VideoCapture _baseVideo, string _videoPath);
+    VidMan(VideoCapture _baseVideo, string _videoPath, ostringstream _buf);
     
     // methods
     void playVideo();
+    void printFPS(Mat _frame);
     int getTotFrames();
     
 };
