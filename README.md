@@ -15,8 +15,8 @@ The first thing you need is a compiled version of OpenCV (I am using 3.4.3). Ref
 
 # 2) IDE
 Any IDEs can be used to read/write the program. Some OpenCV libraries may be required to correctly interpret commands.
-Header libraries are found in /usr/local/include.
-Library files are found in /usr/local/lib.
+Header libraries are found in `/usr/local/include`.
+Library files are found in `/usr/local/lib`.
 
 # 3) Build the program
 To build the program, move into the main (highest) project *HOGdetector* directory and run the `compile.sh` script. 
@@ -53,7 +53,7 @@ where:
  - `dispY` = length of the bounding box on the y-axis (pixel)
 
 # Additional notes
-The accuracy has been computed as suggested on StackOverflow[7]. Better implementation might be necessary. An alternative function is commented in the `Accuracy.cpp` file.
+The accuracy has been computed as suggested on StackOverflow[7]. Better implementations might be necessary. An alternative function is commented in the `Accuracy.cpp` file.
 
 License
 ----
