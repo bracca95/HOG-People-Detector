@@ -1,9 +1,9 @@
 # HOG People Detector
 
-The program uses a HOG people detector trained on s SVM classifier to draw a rectangle that aims to identify the people in the video frame by frame.
-The video is passed as input to the program and the algorithm can be run only for one instance; if you need to perform the same operation on other video, please modify the full path accordingly.
+The program uses a HOG people detector trained on a SVM classifier to draw bounding boxes that identify people in a video (frame by frame).
+The video is passed as input to the program and the algorithm can be run only for one instance. If also a ground truth is passed, the accuracy of the operation is computed (see below for more information about ground truth).
 
-As the program starts, the user is asked to choosed between to main methods:
+As the program starts, the user is asked to choose between to main methods:
   - DEFAULT
   - DAIMLER
 
