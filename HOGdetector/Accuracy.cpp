@@ -58,3 +58,34 @@ int Accuracy::overlap(Rect _rect1, Rect _rect2) {
     else
         return 0;
 }
+
+/* OPTIONAL ACCURACY */
+//// This is used for video surveillance because BB found are larger that GT
+//void getAccuracySurv (vector<Rect> found, vector<Rect> truth, ofstream* outfile) {
+//    int truePositive = 0;
+//    int falsePositive = 0;      // all detections - true positives
+//    int falseNegative = 0;      // all truths - true positives
+//
+//    // here to count the TRUE POSITIVE
+//    for (vector<Rect>::iterator i = found.begin(); i != found.end(); ++i) {
+//        for (vector<Rect>::iterator j = truth.begin(); j != truth.end(); ++j) {
+//            if ( ((*i & *j) == *j) && (i->area()/j->area() > 1) && (i->area()/j->area() < 5.7) ) {
+//                // compute all the true positive
+//                truePositive++;
+//            }
+//        }
+//
+//        // check for any errors
+//        if (found.size() < truePositive) {
+//            truePositive = (int)found.size();
+//        }
+//
+//        // compute false positive and false negative
+//        falsePositive = (int)found.size() - truePositive;
+//        falseNegative = (int)truth.size() - truePositive;
+//    }
+//    // DEBUG
+//    //cout << "cnt:"  << frameCounter << ". guess: " << truePositive << ". size: " << found.size() << endl;
+//
+//    writeOnFile(outfile, truePositive, falsePositive, falseNegative);
+//}
