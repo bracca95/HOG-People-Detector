@@ -31,6 +31,8 @@ A directory called `build` will appear after building. Open a terminal in the lo
 
 to understand how to use it. You can simply pass a video, or you can arbitrarily choose to provide also a ground truth file. In the latter case, the overall accuracy of the performed detection is computed.
 
+If you need some videos or ground truth, plese refer to https://motchallenge.net/
+
 # Important note
 If you are going to provide a ground truth file, it must follow some strict rules:
 
