@@ -1,4 +1,4 @@
-﻿# HOG People Detector
+# HOG People Detector
 
 The program uses a HOG people detector trained on s SVM classifier to draw a rectangle that aims to identify the people in the video frame by frame.
 The video is passed as input to the program and the algorithm can be run only for one instance; if you need to perform the same operation on other video, please modify the full path accordingly.
@@ -56,7 +56,7 @@ The accuracy has been computed as suggested on StackOverflow[7]. Better implemen
 License
 ----
 
-Refer to 
+Refer to LICENSE
 
 # References
 [1] https://lear.inrialpes.fr/people/triggs/pubs/Dalal-cvpr05.pdf
